@@ -11,3 +11,12 @@ router.get("/api/workouts", (req, res) => {
         res.json(err);
     });
 });
+
+router.get("/api/workouts/range", (req, res) => {
+    db.find().then((dbData) => {
+        res.json(dbData);
+    })
+    .catch((err) => {
+        res.json(err);
+    });
+});
