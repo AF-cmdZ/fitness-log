@@ -20,3 +20,15 @@ router.get("/api/workouts/range", (req, res) => {
         res.json(err);
     });
 });
+
+router.put("/api/workouts/:id", ({body, params}, res) => {
+    db.findByIdAndUpdate(params.id, { $push: { exercise: body } })
+    .then((dbData) => {
+        res.json(dbData);
+    })
+    .catch((err) => {
+        res.json(err);
+    });
+});
+
+module.exports = router;
