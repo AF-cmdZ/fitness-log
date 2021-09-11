@@ -108,4 +108,10 @@ function populateChart(data) {
 }
 
 // get all workout data from back-end
+fetch("/api/workouts/range").then((response) => {
+  return response.json();
+})
+  .then((data) => {
+    populateChart(data);
+  });
 API.getWorkoutsInRange().then(populateChart);
