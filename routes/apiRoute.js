@@ -1,22 +1,23 @@
 const express = require("express");
-const { db } = require("../models/workout.js");
+const db = require("../models");
 const router = express.Router();
 const Workout = require("../models/workout.js");
+const mongoose = require("mongoose");
 
 router.get("/api/workouts", (req, res) => {
-    db.find().then((dbData) => {
+    db.Workout.find().then(dbData => {
         res.json(dbData);
     })
-    .catch((err) => {
+    .catch(err => {
         res.json(err);
     });
 });
 
 router.get("/api/workouts/range", (req, res) => {
-    db.find().then((dbData) => {
+    db.Workout.find().then(dbData => {
         res.json(dbData);
     })
-    .catch((err) => {
+    .catch(err => {
         res.json(err);
     });
 });
