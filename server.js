@@ -5,7 +5,7 @@ const path = require("path");
 
 const PORT = process.env.PORT || 3002;
 
-const db = require("./models");
+const db = require("./models/Workout");
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.DB_CLIENT_URL || "mongodb://localhost/Workout", {
+mongoose.connect(process.env.DB_CLIENT_URL || "mongodb://localhost/workout", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

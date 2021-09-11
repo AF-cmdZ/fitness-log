@@ -21,12 +21,25 @@ router.get("/api/workouts/range", (req, res) => {
     });
 });
 
-router.put("/api/workouts/:id", ({body, params}, res) => {
-    db.findByIdAndUpdate(params.id, { $push: { exercise: body } })
-    .then((dbData) => {
+router.put("/api/workouts/:id", (req, res) => {
+    db.Workout.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $push: { exercises: req.body } },
+        { new: true }
+        )
+    .then(dbData => {
         res.json(dbData);
     })
-    .catch((err) => {
+    .catch(err => {
+        res.json(err);
+    });
+});
+
+router.post("/api/workouts", ({ body }, res) => {
+    db.Workout.create(body).then(dbData => {
+        res.json(dbData);
+    })
+    .catch(err => {
         res.json(err);
     });
 });
