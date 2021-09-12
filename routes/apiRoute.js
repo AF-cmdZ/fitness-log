@@ -1,7 +1,6 @@
 const express = require("express");
 const db = require("../models");
 const router = express.Router();
-const Workout = require("../models/workout.js");
 const mongoose = require("mongoose");
 
 router.get("/api/workouts", (req, res) => {
