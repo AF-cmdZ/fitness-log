@@ -4,16 +4,21 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 router.get("/api/workouts", (req, res) => {
-    db.Workout.find().then(dbData => {
+    db.Workout
+    .aggregate([{ $addFields: { totalDuration: { $sum: [ "$exercises.duration" ] } }}])
+    .then(dbData => {
+        console.log(dbData);
         res.json(dbData);
     })
     .catch(err => {
+        console.log(err);
         res.json(err);
     });
 });
 
 router.get("/api/workouts/range", (req, res) => {
     db.Workout.find().then(dbData => {
+        console.log(dbData);
         res.json(dbData);
     })
     .catch(err => {
